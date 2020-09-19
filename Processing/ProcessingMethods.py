@@ -1,7 +1,7 @@
 import json
 import requests
 
-from Logger.main_logger import get_logger
+from Utils.Logger.main_logger import get_logger
 
 
 class ProcessingMethods:

@@ -1,6 +1,6 @@
 from datetime import datetime
 
-from ConfigReader.ConfigReader import read_config
+from Utils.ConfigReader.ConfigReader import read_config
 from Processing.Headers.table_headers import incomes_headers_list
 from Processing.ProcessingMethods import ProcessingMethods
 

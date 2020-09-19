@@ -1,2 +1,6 @@
 /wildberries-get.iml
 /.idea/
+/AppConfig/config.ini
+/WildberriesReport.xlsx
+/test.py
+/SimpleFlaskMock/SimpleFlaskMock.iml

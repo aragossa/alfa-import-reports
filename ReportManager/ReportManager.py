@@ -11,7 +11,7 @@ class ReportManager:
 
     def run(self):
         if len(self.args) == 1:
-            print ('main.py -<report shortname1> -<report shortname1>\n    -w for Wildberries report\n    -f for flow report')
+            print ('Application usage:\n main.py -<report shortname1> -<report shortname1>\n    -w for Wildberries report\n    -f for flow report')
             sys.exit(2)
         else:
             for arg in self.args:

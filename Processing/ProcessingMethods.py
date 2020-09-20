@@ -3,6 +3,8 @@ import requests
 
 from Utils.Logger.main_logger import get_logger
 
+log = get_logger("ProcessingMethods")
+
 
 class ProcessingMethods:
 
@@ -11,15 +13,11 @@ class ProcessingMethods:
         self.__report_name = report_name
         self.__row_cursor = 1
         self.__headers = headers
-        self.__log = get_logger(self.__report_name)
         self.workbook = workbook
 
-
-    # def log(self):
-    #     return get_logger(self.__report_name)
-
     def __get_wildberries_info(self):
-        self.__log.info(f"Sending GET request to {self.__url}")
+        log.info(f"Sending GET request")
+        log.info(f"URL: {self.__url}")
         response = requests.get(self.__url).text
         return response
 
@@ -42,11 +40,13 @@ class ProcessingMethods:
             col_cursor += 1
 
     def main_processor(self):
-        self.__log.info(f'Processing report {self.__report_name}')
+        log.info(f'Processing report {self.__report_name}')
         ws = self.__add_worksheet()
+        log.info(f"Adding Excel worksheet {self.__report_name}")
         self.__write_headers(ws=ws)
         data = self.__get_json()
         for row in data:
             self.__write_row(row=row, ws=ws)
             self.__row_cursor += 1
+        log.info(f'Report {self.__report_name} finished')
         return ws

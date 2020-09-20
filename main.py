@@ -1,8 +1,12 @@
+import sys
+
 from ReportManager.ReportManager import ReportManager
 
 
 def main():
-    ReportManager.run_wildberries()
+    args = sys.argv
+    report = ReportManager(args=args)
+    report.run()
 
 
 if __name__ == '__main__':

@@ -2,10 +2,10 @@ import os
 
 import xlsxwriter
 
-from Processing.ReportIncomes import ReportIncomes
-from Processing.ReportOrders import ReportOrders
-from Processing.ReportSales import ReportSales
-from Processing.ReportStocks import ReportStocks
+from Processing.WildberriesReports.ReportIncomes import ReportIncomes
+from Processing.WildberriesReports.ReportOrders import ReportOrders
+from Processing.WildberriesReports.ReportSales import ReportSales
+from Processing.WildberriesReports.ReportStocks import ReportStocks
 
 
 class WildberriesReport:

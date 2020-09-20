@@ -3,6 +3,9 @@ from datetime import datetime
 from Utils.ConfigReader.ConfigReader import read_config
 from Processing.Headers.table_headers import incomes_headers_list
 from Processing.ProcessingMethods import ProcessingMethods
+from Utils.Logger.main_logger import get_logger
+
+log = get_logger("ReportIncomes")
 
 
 class ReportIncomes(ProcessingMethods):
@@ -13,17 +16,22 @@ class ReportIncomes(ProcessingMethods):
                          report_name=self.report_name,
                          headers=self.__get_headers())
 
-    def __url_builder(self):
+    @staticmethod
+    def __url_builder():
         # TODO fix request url
         app_mode = read_config('application').get('mode')
         if app_mode == 'prod':
             api_key = read_config('wildberries').get('api')
-            now = datetime.now()
-            date_form = f'{now.year:04d}-{now.month:02d}-{now.day:02d}T{now.hour:02d}%3A00%3A00.000Z'
+            date_config = read_config('wildberries.incomesreport').get('reportdate')
+            time_config = read_config('wildberries.incomesreport').get('reporttime')
+            log.info(f"Report datetime {' '.join([date_config, time_config])}")
+            date = datetime.strptime(' '.join([date_config, time_config]), '%d.%m.%Y %H:%M')
+            date_form = f'{date.year:04d}-{date.month:02d}-{date.day:02d}T{date.hour:02d}%3A00%3A00.000Z'
             url = f'https://suppliers-stats.wildberries.ru/api/v1/supplier/incomes?dateFrom={date_form}&key={api_key}'
         else:
             url = 'http://127.0.0.1:5000/wildberries/incomes'
         return url
 
-    def __get_headers(self):
+    @staticmethod
+    def __get_headers():
         return incomes_headers_list

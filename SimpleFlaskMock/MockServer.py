@@ -1,12 +1,15 @@
 import os
 
 from flask import Flask
+
 app = Flask(__name__)
+
 
 def read_json_file(filename):
     path_to_file = os.path.join('ResponseExamples', 'WildberriesResponses', filename)
     with open(path_to_file, 'r') as response:
         return response.read()
+
 
 @app.route('/wildberries/<path:subpath>')
 def report_incomes(subpath):

@@ -3,5 +3,6 @@
 /AppConfig/config.ini
 /WildberriesReport.xlsx
 /test.py
-/SimpleFlaskMock/SimpleFlaskMock.iml
+/SimpleFlaskMock1/SimpleFlaskMock.iml
 /venv/
+/.gitignore
